@@ -58,7 +58,7 @@ selectedProduit:Produit;
     this.createFrom();
   }
   deleteProduit(){
-    this.prodseri.deleteProduit(this.selectedProduit.ref).subscribe(
+    this.prodseri.deleteProduit(this.selectedProduit.id).subscribe(
       res=>{
         this.selectedProduit=new Produit();
         this.loadProduits();

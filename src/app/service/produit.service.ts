@@ -20,8 +20,8 @@ public host='http://localhost:8082/Api/Produit'
   updateProduit(produit :Produit):Observable<any>{
     return this.http.put(this.host,produit);
   }
-  deleteProduit(ref :string):Observable<any>{
-    return this.http.delete(this.host+`/${ref}`);
+  deleteProduit(id :number):Observable<any>{
+    return this.http.delete(this.host+`/${id}`);
   }
 
   
