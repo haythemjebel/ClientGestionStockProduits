@@ -11,6 +11,9 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { ContentComponent } from './component/content/content.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ProduitService } from './service/produit.service';
+import { LoginComponent } from './component/login/login.component';
+import { HomeComponent } from './component/home/home.component';
+import { AppService } from './service/app.service';
 
 
 @NgModule({
@@ -20,7 +23,9 @@ import { ProduitService } from './service/produit.service';
     NavbarComponent,
     SidebarComponent,
     ContentComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,7 @@ import { ProduitService } from './service/produit.service';
     ReactiveFormsModule,HttpClientModule
  
   ],
-  providers: [ProduitService],
+  providers: [ProduitService,AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
