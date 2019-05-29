@@ -17,6 +17,7 @@ import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { AppService } from './service/app.service';
 import { from } from 'rxjs';
+import { UserComponent } from './component/user/user.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { from } from 'rxjs';
     ContentComponent,
     DashboardComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

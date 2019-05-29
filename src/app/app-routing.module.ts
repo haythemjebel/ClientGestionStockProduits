@@ -1,3 +1,4 @@
+import { UserComponent } from './component/user/user.component';
 import { ProduitResolver } from './component/produit/produit.resolver';
 import { ProduitComponent } from './component/produit/produit.component';
 import { NgModule } from '@angular/core';
@@ -9,15 +10,27 @@ import { HomeComponent } from './component/home/home.component';
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'login',component:LoginComponent},
-  {path:'home',component:HomeComponent,children:[
-    {path:'produit',component:ProduitComponent,
-    resolve:{
-      Produits:ProduitResolver
-    },
-    outlet:'contentOutlet'  
-    },
-    {path:'dashboard',component:DashboardComponent,outlet:'contentOutlet'},
-  ]}
+  {path:'home',component:HomeComponent,
+    children:[
+          {
+            path:'produit',component:ProduitComponent,
+            resolve:{
+              Produits:ProduitResolver
+            },
+            outlet:'contentOutlet'  
+          },
+          {
+            path:'dashboard',
+            component:DashboardComponent,
+            outlet:'contentOutlet'
+          },
+          {
+            path:'user',
+            component:UserComponent,
+            outlet:'contentOutlet'
+          }
+  ]
+}
 ];
 
 @NgModule({
