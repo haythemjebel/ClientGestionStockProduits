@@ -1,20 +1,10 @@
 <nav class="hidden-xs-down bg-faded sidebar">
     <ul class="nav nav-pills flex-column">
-        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" [routerLink]="[{outlets:{contentOutlet:'dashboard'}}]">Dashboard</a>
+        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" *ngIf="hasRoleUser()" [routerLink]="[{outlets:{contentOutlet:'dashboard'}}]">Dashboard</a>
         </li>
-        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" [routerLink]="[{outlets:{contentOutlet:'produit'}}]">Produit</a>
+        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" *ngIf="hasRoleUser()" [routerLink]="[{outlets:{contentOutlet:'produit'}}]">Produits</a>
         </li>
-        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" [routerLink]="[{outlets:{contentOutlet:'user'}}]">Utilisateur</a>
-        </li>
-        <li class="nav-item"><a class="nav-link bg-light" href="#">item 3</a>
-        </li>
-    </ul>
-    <ul class="nav nav-pills flex-column">
-        <li class="nav-item"><a class="nav-link bg-light" href="#">item 11</a>
-        </li>
-        <li class="nav-item"><a class="nav-link bg-light" href="#">item 22</a>
-        </li>
-        <li class="nav-item"><a class="nav-link bg-light" href="#">item 33</a>
+        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" *ngIf="hasRoleAdmin()" [routerLink]="[{outlets:{contentOutlet:'user'}}]">Utilisateurs</a>
         </li>
     </ul>
 </nav>

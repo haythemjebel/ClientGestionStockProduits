@@ -1,3 +1,4 @@
+import { DataModel } from './../../shared/data.model';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder,Validators } from '@angular/forms';
 import { Produit } from './../../shared/produit';
@@ -11,7 +12,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./produit.component.css']
 })
 export class ProduitComponent implements OnInit {
-Prods:Produit[];
+  Prods:Produit[];
+  produitForm:FormGroup;
+  produit:Produit=new Produit();
+  produitsModel:DataModel[];
+
+  constructor(private prodseri:ProduitService,private fb:FormBuilder,private route:ActivatedRoute) { 
+  }
+
+  ngOnInit() {
+    this.Prods= this.route.snapshot.data.Produits;
+    this.produitForm=this.fb.group({
+      ref:['',Validators.required],
+      quantite:'',
+      prixUnitaire:''
+    });
+
+    this.produitsModel=[
+      new DataModel('id','ID','number',true,[]),
+      new DataModel('ref','Reference','string',false,[]),
+      new DataModel('quantite','Quantité','number',false,[]),
+      new DataModel('prixUnitaire','Prix Unitaire','number',false,[]),
+    ]
+   }
+/*Prods:Produit[];
 produitForm:FormGroup;
 operation:string ='add';
 selectedProduit:Produit;
@@ -32,13 +56,13 @@ selectedProduit:Produit;
     });
    }
   loadProduits(){
-    this.prodseri.getProduits().subscribe(
+    this.prodseri.getAll().subscribe(
       d => {this.Prods = d}
       );
   }
   addProduit(){
     const p =this.produitForm.value;
-    this.prodseri.addProduit(p).subscribe(
+    this.prodseri.add(p).subscribe(
       res=>{
         this.initProduit();
         this.loadProduits();
@@ -46,7 +70,7 @@ selectedProduit:Produit;
     );
   }
   updateProduit(){
-    this.prodseri.updateProduit(this.selectedProduit).subscribe(
+    this.prodseri.update(this.selectedProduit).subscribe(
       res=>{
         this.initProduit();
         this.loadProduits();
@@ -58,12 +82,13 @@ selectedProduit:Produit;
     this.createFrom();
   }
   deleteProduit(){
-    this.prodseri.deleteProduit(this.selectedProduit.id).subscribe(
+    this.prodseri.delete(this.selectedProduit.id).subscribe(
       res=>{
         this.selectedProduit=new Produit();
         this.loadProduits();
       }
     )
   }
+*/
 
 }

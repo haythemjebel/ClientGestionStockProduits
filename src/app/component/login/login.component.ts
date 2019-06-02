@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
   login(){
     this.servi.authentificate(this.credentials,()=>{
-      this.route.navigateByUrl('/home/(contentOutlet:produit)');
+      this.route.navigateByUrl('/home/(contentOutlet:dashboard)');
     });{
 
     }

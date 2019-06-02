@@ -1,3 +1,4 @@
+import { UserResolver } from './component/user/user.resolver';
 import { UserComponent } from './component/user/user.component';
 import { ProduitResolver } from './component/produit/produit.resolver';
 import { ProduitComponent } from './component/produit/produit.component';
@@ -27,6 +28,9 @@ const routes: Routes = [
           {
             path:'user',
             component:UserComponent,
+            resolve:{
+              Users:UserResolver
+            },
             outlet:'contentOutlet'
           }
   ]
@@ -36,6 +40,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[ProduitResolver]
+  providers:[ProduitResolver,UserResolver]
 })
 export class AppRoutingModule { }

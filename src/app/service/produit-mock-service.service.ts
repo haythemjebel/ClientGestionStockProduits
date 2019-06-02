@@ -1,10 +1,13 @@
+import { Observable, of } from 'rxjs';
+import { CrudService } from './../shared/crud.service';
 import { Injectable } from '@angular/core';
 import { Produit } from '../shared/produit';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProduitMockService {
+export class ProduitMockService  implements CrudService {
+  public host='http://localhost:8082/Api/Produit'
   private PROD:Produit[]=[]
 
   constructor() { 
@@ -15,7 +18,17 @@ export class ProduitMockService {
     this.PROD.push(p2);
     this.PROD.push(p3);
   }
-  public getProduits():Produit[]{
-    return  this.PROD;
-  }
+  
+    getAll():Observable<any>{
+      return of(this.PROD);
+    }
+    add(produit):Observable<any>{
+      return of("success");
+    }
+    update(produit):Observable<any>{
+      return of("success");
+    }
+    delete(id):Observable<any>{
+      return of("success");
+    }
 }

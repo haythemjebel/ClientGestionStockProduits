@@ -18,6 +18,10 @@ import { HomeComponent } from './component/home/home.component';
 import { AppService } from './service/app.service';
 import { from } from 'rxjs';
 import { UserComponent } from './component/user/user.component';
+import { StoreModule } from '@ngrx/store';
+import { PrincipalReducer } from './shared/principal.reducer';
+import { UserService } from './service/user.service';
+import { CrudComponent } from './shared/crud/crud.component';
 
 
 @NgModule({
@@ -30,15 +34,17 @@ import { UserComponent } from './component/user/user.component';
     DashboardComponent,
     LoginComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    CrudComponent
   ],
   imports: [
     BrowserModule,
+    StoreModule.forRoot({principal:PrincipalReducer}),
     AppRoutingModule,
     ReactiveFormsModule,HttpClientModule
  
   ],
-  providers: [ProduitService,AppService,{provide:HTTP_INTERCEPTORS ,useClass:XhrInterceptor,multi:true},CookieService],
+  providers: [ProduitService,UserService,AppService,{provide:HTTP_INTERCEPTORS ,useClass:XhrInterceptor,multi:true},CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
