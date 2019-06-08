@@ -1,6 +1,6 @@
 <nav class="hidden-xs-down bg-faded sidebar">
     <ul class="nav nav-pills flex-column">
-        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" *ngIf="hasRoleUser()" [routerLink]="[{outlets:{contentOutlet:'dashboard'}}]">Dashboard</a>
+        <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" *ngIf="hasRoleAdmin()" [routerLink]="[{outlets:{contentOutlet:'dashboard'}}]">Dashboard</a>
         </li>
         <li class="nav-item"><a class="nav-link bg-light" routerLinkActive="active" *ngIf="hasRoleUser()" [routerLink]="[{outlets:{contentOutlet:'produit'}}]">Produits</a>
         </li>

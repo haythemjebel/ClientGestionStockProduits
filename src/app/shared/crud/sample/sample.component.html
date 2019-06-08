@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-lg-7">
+        <table class="table table-hover">
+            <thead>
+                <th *ngFor="let dt of dataModel">{{dt.columnReferences}}</th>
+                <th><button class="btn btn-secondary" (click)="operation = 'add'; init();">ADD</button></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data">
+                    <td *ngFor="let dt of dataModel">{{item[dt.columnName]}}</td>
+                    <td>
+                        <button class="btn btn-outline-primary" (click)="operation = 'edit'; selectedItem = item;">Edit</button>
+                        <button class="btn btn-outline-danger" (click)="operation = 'remove'; selectedItem = item;">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                {{operation == 'add' ? 'Ajouter ' : operation == 'edit' ? 'Modifier ' : operation == 'remove' ? 'Supprimer ' :'' }}
+            </div>
+            <div class="card-body">
+                <div *ngIf="operation == 'add' || operation == 'edit'">
+
+                    <form [formGroup]="crudForm">
+                        <div *ngFor="let dt of dataModel" [ngSwitch]="dt.dataType">
+                            <div class="form-group" *ngIf="!dt.readonly">
+                                <label>{{dt.columnReferences}} </label>
+                                <input *ngSwitchCase="'string'" class="form-control" type="text" formControlName="{{dt.columnName}}" [(ngModel)]="selectedItem[dt.columnName]">
+                                <input *ngSwitchCase="'number'" class="form-control" type="number" formControlName="{{dt.columnName}}" [(ngModel)]="selectedItem[dt.columnName]">
+                            </div>
+                            <!-- <div class="alert alert-danger" *ngIf="produitForm.controls['ref'].invalid && (produitForm.controls['ref'].touched || produitForm.controls['ref'].dirty)">
+                            References est obligatoire !
+                        </div> -->
+                        </div>
+
+                        <!--
+                    <div class="form-group">
+                        <label>Références : </label>
+                        <input class="form-control" type="text" formControlName="ref" [(ngModel)]="selectedProduit.ref">
+                    </div>
+                    <div class="alert alert-danger" *ngIf="produitForm.controls['ref'].invalid && (produitForm.controls['ref'].touched || produitForm.controls['ref'].dirty)">
+                        References est obligatoire !
+                    </div>
+                    <div class="form-group">
+                        <label>Quantité : </label>
+                        <input class="form-control" type="number" formControlName="quantite" [(ngModel)]="selectedProduit.quantite">
+                    </div>
+                    <div class="form-group">
+                        <label>Prix unitaire : </label>
+                        <input class="form-control" type="number" formControlName="prixUnitaire" [(ngModel)]="selectedProduit.prixUnitaire">
+                    </div>
+                    -->
+                        <button class="btn btn-success" [disabled]="crudForm.prestine || crudForm.invalid" (click)="operation == 'add' ? add() : update()">
+                        {{operation == 'add' ? 'Ajouter' : operation == 'edit' ? 'Modifier ' :'' }}
+                </button>
+                    </form>
+
+                </div>
+                <div *ngIf="operation == 'remove'">
+                    <p class="card-title">
+                        Références: {{selectedItem.id}}
+                    </p>
+                    <p>Voulez-vous supprimer cet élement ?</p>
+                    <button class="btn btn-danger" [disabled]="!selectedItem.id" (click)="delete()">Confirmer</button>
+                </div>
+            </div>
+            <div class="card-footer">
+            </div>
+        </div>
+    </div>
+</div>

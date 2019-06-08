@@ -23,6 +23,9 @@ public host='http://localhost:8082/Api/Produit'
   delete(id):Observable<any>{
     return this.http.delete(this.host+`/${id}`);
   }
+  addAll(list):Observable<any>{
+    return this.http.post(this.host +'/all',list);
+  }
 
   
 }

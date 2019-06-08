@@ -6,7 +6,7 @@ import { Produit } from '../shared/produit';
 @Injectable({
   providedIn: 'root'
 })
-export class ProduitMockService  implements CrudService {
+export class ProduitMockService implements CrudService {
   public host='http://localhost:8082/Api/Produit'
   private PROD:Produit[]=[]
 
@@ -29,6 +29,9 @@ export class ProduitMockService  implements CrudService {
       return of("success");
     }
     delete(id):Observable<any>{
+      return of("success");
+    }
+    addAll(list):Observable<any>{
       return of("success");
     }
 }

@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-
+import { ChartModule } from 'angular2-chartjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProduitComponent } from './component/produit/produit.component';
@@ -22,6 +22,9 @@ import { StoreModule } from '@ngrx/store';
 import { PrincipalReducer } from './shared/principal.reducer';
 import { UserService } from './service/user.service';
 import { CrudComponent } from './shared/crud/crud.component';
+import { MyChartComponent } from './component/my-chart/my-chart.component';
+import { SampleComponent } from './shared/crud/sample/sample.component';
+import { UploadComponent } from './shared/crud/upload/upload.component';
 
 
 @NgModule({
@@ -35,9 +38,13 @@ import { CrudComponent } from './shared/crud/crud.component';
     LoginComponent,
     HomeComponent,
     UserComponent,
-    CrudComponent
+    CrudComponent,
+    MyChartComponent,
+    SampleComponent,
+    UploadComponent
   ],
   imports: [
+    ChartModule,
     BrowserModule,
     StoreModule.forRoot({principal:PrincipalReducer}),
     AppRoutingModule,

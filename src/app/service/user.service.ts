@@ -24,6 +24,9 @@ public host='http://localhost:8082/crud_user'
   delete(id):Observable<any>{
     return this.http.delete(this.host+`/${id}`);
   }
+  addAll(list):Observable<any>{
+    return this.http.get(this.host +'/all',list);
+  }
 
   
 }
